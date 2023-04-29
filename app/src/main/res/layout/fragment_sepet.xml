@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="sepetYemeklerAdapter"
+            type="com.mustafakilic.yemeksiparisiuygulamasi.ui.adapter.SepetYemeklerAdapter" />
+
+        <variable
+            name="sepetFragment"
+            type="com.mustafakilic.yemeksiparisiuygulamasi.ui.fragment.SepetFragment" />
+
+        <variable
+            name="toplamFiyat"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clToolbarSepet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarSepet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/toolBarRenk"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/toolbarTextSepet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/condiment"
+                    android:text="Hatay Yemek Kültürü"
+                    android:textColor="@color/textColor"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="18dp" />
+
+            </androidx.appcompat.widget.Toolbar>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="413dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/fabAnasayfa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clToolbarSepet">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adapter="@{sepetYemeklerAdapter}"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAnasayfa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/toolBarRenk"
+            android:clickable="true"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/textColor" />
+
+        <TextView
+            android:id="@+id/textViewSepetTutar"
+            android:layout_width="177dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="32dp"
+            android:text="Sepet Tutarınız"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textViewSepetTutarFiyat"
+            app:layout_constraintStart_toEndOf="@+id/fabAnasayfa"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <TextView
+            android:id="@+id/textViewSepetTutarFiyat"
+            android:layout_width="51dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="32dp"
+            android:text="test"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSepettekileriSil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:onClick="@{()->sepetFragment.sepettekilerinHepsiniSil(imageButtonSepettekileriSil)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewSepetTutarFiyat"
+            app:srcCompat="@drawable/ic_delete" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

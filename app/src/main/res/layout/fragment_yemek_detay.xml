@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="yemekDetayFragment"
+            type="com.mustafakilic.yemeksiparisiuygulamasi.ui.fragment.YemekDetayFragment" />
+
+        <variable
+            name="secilenYemek"
+            type="com.mustafakilic.yemeksiparisiuygulamasi.data.entity.Yemekler" />
+
+        <variable
+            name="adetSayisi"
+            type="String" />
+
+        <variable
+            name="yemekFiyati"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.fragment.YemekDetayFragment">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarYemekDetay"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/toolBarRenk"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbarTextYemekDetay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/condiment"
+                android:text="Hatay Yemek Kültürü"
+                android:textColor="@color/textColor"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="18dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/ivGelenYemek"
+            android:layout_width="219dp"
+            android:layout_height="227dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarYemekDetay"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvGelenYemekAdi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@{secilenYemek.yemek_adi}"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivGelenYemek" />
+
+        <TextView
+            android:id="@+id/tvGelenYemekFiyat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{yemekFiyati}"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGelenYemekAdi" />
+
+        <Button
+            android:id="@+id/btnSepeteEkle"
+            android:layout_width="165dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/textColor"
+            android:text="Sepete Ekle"
+            android:onClick='@{() -> yemekDetayFragment.yemegiSepeteEkle(secilenYemek.yemek_adi,secilenYemek.yemek_resim_adi,secilenYemek.yemek_fiyat,adetSayisi,"mustafa")}'
+            android:textColor="@color/white"
+            app:cornerRadius="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/fabAnasayfa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageBtnArttir" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSepet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="128dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/toolBarRenk"
+            android:clickable="true"
+            android:onClick="@{() -> yemekDetayFragment.sepeteGecis(fabSepet)}"
+            android:src="@drawable/ic_sepet"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/textColor" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAnasayfa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="@color/toolBarRenk"
+            android:clickable="true"
+            android:onClick="@{() -> yemekDetayFragment.anasayfayaGecis(fabAnasayfa)}"
+            android:src="@drawable/ic_home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/textColor" />
+
+        <TextView
+            android:id="@+id/adetYemekDetay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@{adetSayisi}"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnSepeteEkle"
+            app:layout_constraintEnd_toStartOf="@+id/imageBtnArttir"
+            app:layout_constraintStart_toEndOf="@+id/imageBtnAzalt"
+            app:layout_constraintTop_toBottomOf="@+id/tvGelenYemekFiyat" />
+
+        <ImageButton
+            android:id="@+id/imageBtnArttir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="136dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/ic_add"
+            android:onClick="@{() -> yemekDetayFragment.adetArttir(imageBtnArttir)}"
+            app:layout_constraintBottom_toTopOf="@+id/fabSepet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/adetYemekDetay"
+            app:layout_constraintTop_toBottomOf="@+id/tvGelenYemekFiyat" />
+
+        <ImageButton
+            android:id="@+id/imageBtnAzalt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="128dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="80dp"
+            android:src="@drawable/ic_remove"
+            android:onClick="@{() -> yemekDetayFragment.adetAzalt(imageBtnAzalt)}"
+            app:layout_constraintBottom_toTopOf="@+id/fabAnasayfa"
+            app:layout_constraintEnd_toStartOf="@+id/adetYemekDetay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGelenYemekFiyat" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
